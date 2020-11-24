@@ -1,6 +1,6 @@
 package data
 
-// variables are declared as being immutable (val) or mutable (var)
+// variables are declared as being read-only (val) or mutable (var)
 // the variable type is declared after a colon right after the name of the variable
 
 val name: String = "thunderbiscuit"

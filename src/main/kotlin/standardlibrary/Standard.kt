@@ -1,4 +1,4 @@
-package standardLibrary
+package standardlibrary
 
 // we import from the Standard Library using statements like the following
 import kotlin.random.Random
