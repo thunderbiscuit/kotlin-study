@@ -19,7 +19,20 @@ fun checkOtherID(otherValidID: Boolean): String = if (otherValidID == true) "yes
 
 
 
+// we can simplify boolean condition checks like this
+fun checkOtherOtherID(otherOtherValidID: Boolean): String = if (otherOtherValidID) "yes" else "no"
+
+
+
+// if else are expressions, and can be used to set variable values
+val a: Int = 1
+val b: Int = 2
+val maxValue = if (a > b) a else b
+
+
+
 fun main() {
     checkID(ID1)
     println(checkOtherID(ID2))
+    println(maxValue)
 }

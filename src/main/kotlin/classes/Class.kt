@@ -1,20 +1,39 @@
 package classes
 
-// class is declared with its primary constructor directly in the class header (first line)
-class Student constructor(age: Int, school: String,) {
+import kotlin.time.days
 
-    // the public visibility modifier is used by default, meaning the variable is visible everywhere
+// we can declare a class without constructor or body
+class Garden
+// val myGarden: Garden = Garden()
+// myGarden.toString()
+// myGarden.hashCode()
+
+
+
+// class is declared with its primary constructor directly in the class header (first line)
+// classes contain properties, which are accessed using getters and setters
+class StudentSimple constructor(age: Int, school: String,) {
+
+    // the public visibility modifier is used by default, meaning the property is visible everywhere
     val currentSchool: String = school
 
-    // a private variable will not be accessible outside of the class
-    // a protected variable will only be visible to subclasses
+    // a private property will not be accessible outside of the class
+    // a protected property will only be visible to subclasses
+    private var age: Int = age
+}
+
+
+
+// we can add functions to classes, and we refer to those as methods
+class StudentAdvanced constructor(age: Int, school: String,) {
+
+    val currentSchool: String = school
     private var age: Int = age
 
     fun printSchool(): Unit {
         println("Student goes to: $currentSchool")
     }
 }
-
 
 
 // if the primary constructor does not have any annotations or visibility modifiers
@@ -75,7 +94,11 @@ class Lion constructor(var age: Int, val name: String) {
 
 
 fun main() {
-    val matt: Student = Student(age = 27, school = "Stanford")
+    val myGarden: Garden = Garden()
+    println(myGarden.toString())
+    println(myGarden.hashCode())
+
+    val matt: StudentAdvanced = StudentAdvanced(age = 27, school = "Stanford")
     matt.printSchool()
     println(matt.currentSchool)
     // println(matt.age) // throws error because age is private to the Student class

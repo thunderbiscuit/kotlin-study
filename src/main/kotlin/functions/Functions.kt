@@ -27,8 +27,8 @@ fun plus2(number: Int): Int {
 
 // we can build functions using named arguments
 // which allows us to provide the arguments to the function call in any order
-// we can use a mix of named arguments and positioned arguments as long as all the positioned arguments
-// are placed before the named arguments or that all named arguments are in the order of the positioned arguments
+// we can use a mix of named arguments and positioned arguments as long all arguments subsequent to the first
+// named argument also be named
 fun addNumbers(num1: Int, num2: Int): Int {
     val total: Int = num1 + num2
     return total
@@ -70,6 +70,7 @@ fun addThree(number: Int): Int = number + 3
 
 
 // we can pass a variable number of arguments to a function using a vararg parameter
+// the arguments passed to the vararg parameter must all be of the same type
 // you can use the spread operator to pass an array as arguments to a function that uses a vararg parameter
 // it is not necessary for the vararg parameter to be the last parameter
 // if it is not, however, all other arguments must be passed using named arguments
