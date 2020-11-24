@@ -1,10 +1,8 @@
 package functions
 
-
-
 // functions are declared using the fun keyword
 // function signatures include the type returned
-// the Unit type is the equivalent of "nothing"
+// the Unit type is the equivalent of nothing of value
 fun sayHello(): Unit {
     println("Hello!")
 }
@@ -66,9 +64,23 @@ fun example(num1: Int, num2: Int, num3: Int,): Unit {
 
 
 // if a function has only one line and it's a return statement
-// we can shorten the function declaration
+// we can shorten the function declaration like so
 fun addThree(number: Int): Int = number + 3
 
+
+
+// we can pass a variable number of arguments to a function using a vararg parameter
+// you can use the spread operator to pass an array as arguments to a function that uses a vararg parameter
+// it is not necessary for the vararg parameter to be the last parameter
+// if it is not, however, all other arguments must be passed using named arguments
+val interestingThings: Array<String> = arrayOf("Android", "Kotlin", "Bitcoin")
+fun nameInterestingThings(vararg interestingThings: String): Unit {
+    for (i in interestingThings) {
+        println("$i is interesting")
+    }
+}
+// nameInterestingThings("Android", "Kotlin", "Bitcoin",)
+// nameInterestingThings(*interestingThings)
 
 
 fun main() {
@@ -88,5 +100,7 @@ fun main() {
     // addLotsOfNumbers(num1 = 1, num4 = 2, 4, 4) // throws error
 
     println(addThree(1))
+
+    nameInterestingThings("a", "b", "c",)
+    nameInterestingThings(*interestingThings)
 }
-// TODO: varargs parameters
