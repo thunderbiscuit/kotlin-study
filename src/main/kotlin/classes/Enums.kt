@@ -19,9 +19,9 @@ fun main() {
     // val otherCommodity: Commodities = Commodities() // throws error: enum types cannot be instantiated
 
     fun decideWhatPurchase(volatilityComfort: Boolean): Commodities {
-        when (volatilityComfort) {
-            true -> return Commodities.BITCOIN
-            false -> return Commodities.GOLD
+        return when (volatilityComfort) {
+            true -> Commodities.BITCOIN
+            false -> Commodities.GOLD
         }
     }
 

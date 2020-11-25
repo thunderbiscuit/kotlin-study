@@ -120,4 +120,8 @@ fun main() {
 
     val sam: Lion = Lion(age = 7, name = "Sam",)
     sam.printInfo()
+
+    // we can retrieve the name of the class of an object using the following methods
+    println(marty.javaClass.kotlin.simpleName)
+    println(sam::class.simpleName)
 }
