@@ -1,7 +1,7 @@
 # Kotlin Study 😎
 
-<p style="text-align: right; heigh: 0px">
-  <button class="btn js-toggle-dark-mode" style="positon: relative; top: -3rem">Enable dark theme</button>
+<p style="text-align: right; height: 0px">
+  <button class="btn js-toggle-dark-mode" style="position: relative; top: -3rem">Enable dark theme</button>
 </p>
 
 This website is the 1-pager version of a series of packages, code samples, and short explorations of the Kotlin language I keep in [this repo](https://github.com/thunderbiscuit/kotlin-study).
@@ -16,7 +16,7 @@ This website is the 1-pager version of a series of packages, code samples, and s
 ## Data
 ```kotlin
 package data
-```  
+```
 
 ### Variables 
 `src/main/kotlin/data/Variables.kt`
