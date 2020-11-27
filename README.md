@@ -3,8 +3,9 @@ This website is the 1-pager version of a series of packages, code samples, and s
 <br/>
 
 ## Data
-`package data`  
-<br/>
+```kotlin
+package data
+```  
 
 ### Variables 
 `src/main/kotlin/data/Variables.kt`
@@ -94,8 +95,9 @@ fun main() {
 <br/>
 
 ## Functions
-`package functions`
-<br/>
+```kotlin
+package functions
+```
 
 ### Functions
 `/src/main/kotlin/functions/Functions.kt`  
@@ -207,7 +209,6 @@ fun main() {
 ```kotlin
 package standardlibrary
 ```
-<br/>
 
 ### Imports 
 `/src/main/kotlin/Imports.kt`
@@ -256,7 +257,6 @@ fun main() {
 ```kotlin
 package controlflow
 ```
-<br/>
 
 ### If/Else
 `src/main/kotlin/controlflow/IfElse.kt`
@@ -296,5 +296,31 @@ fun main() {
     checkID(ID1)
     println(checkOtherID(ID2))
     println(maxValue)
+}
+```
+<br/>
+
+### For Loops
+`/src/main/kotlin/controlflow/ForLoops.kt`
+
+```kotlin
+fun main() {
+
+    val number: Int = 2
+
+    // when matches its argument against all branches sequentially until some branch condition is satisfied
+    // the else branch is evaluated if none of the other branch conditions are satisfied
+    when (number) {
+        1 -> println("the number is 1")
+        2 -> println("the number is 2")
+        else -> println("the number is something else")
+    }
+
+    // if many cases should be handled the same way, the branch conditions may be combined with a comma
+    when (number) {
+        1, 2, 3, 4 -> println("the number is 1, 2, 3, or 4")
+        8 -> println("the number is 8")
+        else -> println("the number is something else")
+    }
 }
 ```
