@@ -1,6 +1,6 @@
 # Kotlin Study 😎
 
-<!-- <button class="btn js-toggle-dark-mode">Enable dark theme</button> -->
+<button class="btn js-toggle-dark-mode">Enable dark theme</button>
 
 This website is the 1-pager version of a series of packages, code samples, and short explorations of the Kotlin language I keep in [this repo](https://github.com/thunderbiscuit/kotlin-study).
 
