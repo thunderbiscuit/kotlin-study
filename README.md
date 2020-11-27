@@ -1,9 +1,10 @@
 This website is the 1-pager version of a series of packages, code samples, and short explorations of the Kotlin language I keep in [this repo](https://github.com/thunderbiscuit/kotlin-study).
 
 <br/>
-<br/>
 
-# Data (`package data`)
+# Data
+`package data`  
+<br/>
 
 ### Variables `src/main/kotlin/data/Variables.kt`
 Variables are declared as being read-only (`val`) or mutable (`var`). The variable type is declared after a colon right after the name of the variable.
@@ -87,7 +88,7 @@ fun main() {
 <br/>
 <br/>
 
-# Functions
+## Functions
 
 `package functions`
 
@@ -195,7 +196,7 @@ fun main() {
 ```
 <br/>
 
-# Imports and Standard Library
+## Imports and Standard Library
 `package standardlibrary`
 
 #### Imports `/src/main/kotlin/Imports.kt`
