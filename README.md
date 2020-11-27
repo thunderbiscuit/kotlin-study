@@ -304,6 +304,20 @@ fun main() {
 `/src/main/kotlin/controlflow/ForLoops.kt`
 
 ```kotlin
+val cities: List<String> = listOf("Vancouver", "Calgary", "Regina", "Toronto", "Ottawa", "Fredericton")
+
+fun main() {
+    for (city: String in cities) {
+        println(city)
+    }
+}
+```
+<br/>
+
+### When
+`src/main/kotlin/controlflow/When.kt`
+
+```kotlin
 fun main() {
 
     val number: Int = 2
