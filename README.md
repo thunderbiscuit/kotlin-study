@@ -6,7 +6,9 @@ This website is the 1-pager version of a series of packages, code samples, and s
 `package data`  
 <br/>
 
-### Variables `src/main/kotlin/data/Variables.kt`
+### Variables 
+#### `src/main/kotlin/data/Variables.kt`
+
 Variables are declared as being read-only (`val`) or mutable (`var`). The variable type is declared after a colon right after the name of the variable.
 ```kotlin
 val name: String = "thunderbiscuit"
@@ -24,7 +26,8 @@ var kids: Boolean? = null
 ```
 <br/>
 
-### Destructuring `/src/main/kotlin/data/Destructuring.kt`
+### Destructuring
+#### `/src/main/kotlin/data/Destructuring.kt`
 
 ```kotlin
 fun main() {
@@ -62,7 +65,9 @@ fun main() {
 ```
 <br/>
 
-### Operator Overloading `src/main/kotlin/data/OperatorOverloading.kt`
+### Operator Overloading
+#### `src/main/kotlin/data/OperatorOverloading.kt`
+
 Operators like `+` and `-` can be defined for custom classes.
 
 ```kotlin
@@ -92,7 +97,9 @@ fun main() {
 
 `package functions`
 
-#### Functions `/src/main/kotlin/functions/Functions.kt`
+### Functions
+`/src/main/kotlin/functions/Functions.kt`  
+
 Functions are declared using the `fun` keyword. Function signatures include the type returned.
 
 The Unit type is the equivalent of "nothing of value"
