@@ -1,12 +1,11 @@
-<center>
-    <img src="./Kotlin-logo.svg.png" width="300">
-</center>
-
-
 # Kotlin Study 😎
 
 This website is the 1-pager version of a series of packages, code samples, and short explorations of the Kotlin language I keep in [this repo](https://github.com/thunderbiscuit/kotlin-study).
 
+<br/>
+<center>
+    <img src="./Kotlin-logo.svg.png" width="200">
+</center>
 <br/>
 
 ## Data
@@ -100,10 +99,6 @@ fun main() {
 ```
 <br/>
 <br/>
-
-<center>
-    <img src="./Kotlin-logo-word.png" width="300">
-</center>
 
 ## Functions
 ```kotlin
