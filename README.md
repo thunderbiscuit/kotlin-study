@@ -1,4 +1,4 @@
-# Kotlin Study
+# Kotlin Study 😎
 
 This website is the 1-pager version of a series of packages, code samples, and short explorations of the Kotlin language I keep in [this repo](https://github.com/thunderbiscuit/kotlin-study).
 
