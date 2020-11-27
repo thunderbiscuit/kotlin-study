@@ -1,3 +1,5 @@
+# Kotlin Study
+
 This website is the 1-pager version of a series of packages, code samples, and short explorations of the Kotlin language I keep in [this repo](https://github.com/thunderbiscuit/kotlin-study).
 
 <br/>
@@ -30,14 +32,14 @@ var kids: Boolean? = null
 ### Destructuring
 `/src/main/kotlin/data/Destructuring.kt`
 
+Kotlin has a syntax called destructuring declaration, which creates multiple variables at once. 
+
 ```kotlin
 fun main() {
 
     data class FamousPerson(val nationality: String, val talents: String)
     val Adele: FamousPerson = FamousPerson("British", "Singer")
 
-    // Kotlin has a syntax called destructuring declaration, which creates multiple variables at once
-    // data class FamousPerson(val nationality: String, val talents: String)
     val (adeleNationality: String, adeleTalents: String) = Adele
 
     println(Adele.nationality)

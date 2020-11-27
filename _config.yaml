@@ -1,5 +1,6 @@
 remote_theme: thunderbiscuit/just-the-docs
 
+# theme configurations
 search_enabled: true
 search:
   # Split pages into sections that can be searched individually
