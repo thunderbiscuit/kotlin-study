@@ -2,12 +2,12 @@ This website is the 1-pager version of a series of packages, code samples, and s
 
 <br/>
 
-# Data
+## Data
 `package data`  
 <br/>
 
 ### Variables 
-#### `src/main/kotlin/data/Variables.kt`
+`src/main/kotlin/data/Variables.kt`
 
 Variables are declared as being read-only (`val`) or mutable (`var`). The variable type is declared after a colon right after the name of the variable.
 ```kotlin
@@ -27,7 +27,7 @@ var kids: Boolean? = null
 <br/>
 
 ### Destructuring
-#### `/src/main/kotlin/data/Destructuring.kt`
+`/src/main/kotlin/data/Destructuring.kt`
 
 ```kotlin
 fun main() {
@@ -66,7 +66,7 @@ fun main() {
 <br/>
 
 ### Operator Overloading
-#### `src/main/kotlin/data/OperatorOverloading.kt`
+`src/main/kotlin/data/OperatorOverloading.kt`
 
 Operators like `+` and `-` can be defined for custom classes.
 
@@ -94,8 +94,8 @@ fun main() {
 <br/>
 
 ## Functions
-
 `package functions`
+<br/>
 
 ### Functions
 `/src/main/kotlin/functions/Functions.kt`  
@@ -204,14 +204,15 @@ fun main() {
 <br/>
 
 ## Imports and Standard Library
-`package standardlibrary`
-
-#### Imports `/src/main/kotlin/Imports.kt`
-
-Each file declares its belonging to a package with the following statement. It is customary to have all files in the same directory belong to the same package but it does not have to be so
 ```kotlin
 package standardlibrary
 ```
+<br/>
+
+### Imports 
+`/src/main/kotlin/Imports.kt`
+
+Each file declares its belonging to a package with the following statement. It is customary to have all files in the same directory belong to the same package but it does not have to be so.
 
 A number of packages are imported into every Kotlin file by default
 ```kotlin
@@ -246,5 +247,54 @@ fun main() {
 
     // Ranges
     5.untilButNotIncluding(to = 10)
+}
+```
+<br/>
+<br/>
+
+## Control Flow
+```kotlin
+package controlflow
+```
+<br/>
+
+### If/Else
+`src/main/kotlin/controlflow/IfElse.kt`
+
+```kotlin
+val ID1: Boolean = true
+val ID2: Boolean = false
+
+// if else control flow
+fun checkID(validID: Boolean): Unit {
+    if (validID == true) {
+        println("The user has a valid ID")
+    } else {
+        println("The user does not have a valid ID")
+    }
+}
+
+
+// if each block of the if-else is simply a return, the whole thing can be written like so
+fun checkOtherID(otherValidID: Boolean): String = if (otherValidID == true) "yes" else "no"
+
+
+
+// we can simplify boolean condition checks like this
+fun checkOtherOtherID(otherOtherValidID: Boolean): String = if (otherOtherValidID) "yes" else "no"
+
+
+
+// if else are expressions, and can be used to set variable values
+val a: Int = 1
+val b: Int = 2
+val maxValue = if (a > b) a else b
+
+
+
+fun main() {
+    checkID(ID1)
+    println(checkOtherID(ID2))
+    println(maxValue)
 }
 ```
