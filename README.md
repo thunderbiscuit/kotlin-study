@@ -343,5 +343,207 @@ when (number) {
 }
 ```
 
+## Classes
+```kotlin
+package classes
+```
+
+### Classes
+`src/main/kotlin/classes/Class.kt`
 
 
+We can declare a class without constructor or body
+```kotlin
+class Garden
+val myGarden: Garden = Garden()
+myGarden.toString()
+myGarden.hashCode()
+```
+
+A class is declared with its primary constructor directly in the class header (first line). Classes contain properties, which are accessed using getters and setters. Classes have their visibility modifiers set to `public` by default.
+```kotlin
+class StudentSimple constructor(age: Int, school: String,) {
+
+    // the public visibility modifier is used by default, meaning the property is visible everywhere
+    public val currentSchool: String = school
+
+    // a private property will not be accessible outside of the class
+    // a protected property will only be visible to subclasses
+    private var age: Int = age
+}
+```
+
+We can add functions to classes; and we refer to those as member functions, or methods
+```kotlin
+class StudentAdvanced constructor(age: Int, school: String,) {
+
+    val currentSchool: String = school
+    private var age: Int = age
+
+    fun printSchool(): Unit {
+        println("Student goes to: $currentSchool")
+    }
+}
+```
+
+If the primary constructor does not have any annotations or visibility modifiers the constructor keyword can be omitted
+```kotlin
+class Dog(age: Int) {
+    var age: Int = age
+    val cute: Boolean = true
+}
+```
+
+If there are no parameters needed in the primary constructor, even the parens don't need to be there!
+```kotlin
+class Honeybadger {
+    val dontcare: Boolean = true
+}
+```
+
+Classes can also declare secondary constructors inside the class declaration
+```kotlin
+class Puffin constructor(age: Int) {
+    var ageOfPuffin: Int = age
+
+    constructor() : this(age = 100) {
+        println("Secondary constructor was used")
+    }
+
+    fun printAge(): Unit {
+        println("This puffin is $ageOfPuffin")
+    }
+}
+```
+
+Kotlin creates getters and setters automatically for us but we can declare specific getters and setters
+```kotlin
+class Bison constructor(age: Int) {
+    var ageOfBison: Int = age
+        get() {
+            println("The getter on this bison's age was run")
+            return field - 7
+        }
+        set(value) {
+            println("A trickster has set the new age of this bison")
+            field = value + 100
+        }
+}
+```
+
+Kotlin can declare the properties for us if we declare the parameters as val or var in the class header. Those properties will have their getters and setters set by default
+```kotlin
+class Lion constructor(var age: Int, val name: String) {
+    fun printInfo() {
+        println("$name the lion is $age years old")
+    }
+}
+```
+
+```kotlin
+fun main() {
+    val myGarden: Garden = Garden()
+    println(myGarden.toString())
+    println(myGarden.hashCode())
+
+    val matt: StudentAdvanced = StudentAdvanced(age = 27, school = "Stanford")
+    matt.printSchool()
+    println(matt.currentSchool)
+    println(matt.age) // throws error because age is private to the Student class
+
+    val bitcoin: Honeybadger = Honeybadger()
+    println(bitcoin.dontcare)
+
+    // create objects using the primary and secondary constructors
+    val henry: Puffin = Puffin(age = 25)
+    henry.printAge()
+    val arty: Puffin = Puffin()
+    arty.printAge()
+
+    // custom getters and setters
+    val marty: Bison = Bison(30)
+    println(marty.ageOfBison)
+    marty.ageOfBison = 24
+    println(marty.ageOfBison)
+
+    val sam: Lion = Lion(age = 7, name = "Sam",)
+    sam.printInfo()
+}
+```
+
+We can retrieve the name of the class of an object using the following methods
+```kotlin
+marty.javaClass.kotlin.simpleName
+sam::class.simpleName
+```
+<br/>
+
+### Enums
+`src/main/kotlin/classes/Enums.kt`
+We use enums to specify that a variable can only take values from a predetermined set of possible values. A response from a server might require that it either be a SUCCESS or FAILURE, for example, or that the OS option for the user be set to ANDROID, MAC, or LINUX.
+
+```kotlin
+enum class Commodities {
+    GOLD,
+    BITCOIN,
+}
+
+fun main() {
+
+    val oneCommodity: Commodities = Commodities.BITCOIN
+    println(oneCommodity) // BITCOIN
+
+    val otherCommodity: Commodities = Commodities() // throws error: enum types cannot be instantiated
+
+    fun decideWhatPurchase(volatilityComfort: Boolean): Commodities {
+        return when (volatilityComfort) {
+            true -> Commodities.BITCOIN
+            false -> Commodities.GOLD
+        }
+    }
+
+    // the example below shows how the purchase variable expects a Commodities enum (GOLD or BITCOIN)
+    // anything else will return an error
+    val purchase: Commodities = decideWhatPurchase(volatilityComfort = false)
+    println("You should purchase: $purchase")
+}
+```
+<br/>
+
+### Init Blocks
+`src/main/kotlin/classes/InitBlocks.kt`
+
+If we need to run some code as part of the constructor, we can put that code inside one or more init blocks. Those blocks get executed in order they appear in the class declaration, only once when the object is initialized.
+```kotlin
+class User constructor(val age: Int) {
+    val isAdult: Boolean
+
+    init {
+        isAdult = age > 18
+        if (isAdult = age > 18) println("User is an adult") else println("User is a child")
+    }
+}
+
+fun main() {
+    val jess = User(age = 9) // instantiating the object will print "User is a child" in this case
+    println(jess.isAdult) // false
+}
+```
+<br/>
+
+### Singletons
+`src/main/kotlin/classes/Singletons.kt`
+
+A singleton is an class that can only be instantiated once. This is done using a syntax called _object declaration_.
+```kotlin
+object DatabaseManager {
+    fun connectToDatabase(databaseID: Int) {
+        println("Connected to database")
+    }
+}
+
+fun main() {
+    // the object's initialization is thread-safe and is done at first access (like below)
+    DatabaseManager.connectToDatabase(42)
+}
+```
