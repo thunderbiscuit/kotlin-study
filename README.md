@@ -1,11 +1,6 @@
+# Kotlin Study 😎
 
-<div style="display: flex; alignment: space-between;">
-    <h1 id="kotlin-study">
-        <a href="#kotlin-study-" class="anchor-heading" aria-labelledby="kotlin-study-"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a>
-        Kotlin Study 😎
-    </h1>
-    <button class="btn js-toggle-dark-mode">Enable dark theme</button>
-<div>
+<!-- <button class="btn js-toggle-dark-mode">Enable dark theme</button> -->
 
 This website is the 1-pager version of a series of packages, code samples, and short explorations of the Kotlin language I keep in [this repo](https://github.com/thunderbiscuit/kotlin-study).
 
