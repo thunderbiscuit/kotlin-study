@@ -102,6 +102,31 @@ fun main() {
     println(basket3.apples) // 142
 }
 ```
+
+### Strings
+`src/main/kotlin/data/Strings.kt`
+
+Strings are enclosed between double quotes. We can escape characters using the `\` character.
+```kotlin
+val hello: String = "hello"
+val whatsupdog: String = "What's \"updog\"?"
+```
+
+
+We can build strings using string templates
+```kotlin
+fun printGreetings(greeting: String, age: Int) {
+    println("$greeting, world!")
+    println("You'll be ${age + 10} in 10 years!")
+}
+
+fun main() {
+    println(hello)
+    println(whatsupdog)
+
+    printGreetings(hello, 42)
+}
+```
 <br/>
 <br/>
 
