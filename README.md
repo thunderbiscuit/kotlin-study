@@ -130,6 +130,108 @@ fun main() {
 <br/>
 <br/>
 
+## Collections
+```kotlin
+package collections
+```
+
+### Lists
+`src/main/kotlin/collections/Lists.kt`
+
+Lists are collections of elements in order. Their elements can repeat. Elements are accessible by index.
+```kotlin
+val languages: List<String> = listOf("Java", "Kotlin", "Rust",)
+val ages: List<Int> = listOf(1, 2, 4,)
+```
+
+
+Lists can contain elements of different types
+```kotlin
+val randomData: List<Any> = listOf("Learn Android", 5, "The Honeybadger", 17.2)
+```
+
+Lists are immutable by default, but we can create mutable lists
+```kotlin
+val cities: MutableList<String> = mutableListOf("Vancouver", "Calgary", "Toronto", "Montreal")
+```
+
+```kotlin
+fun main() {
+    println(languages)
+    println(ages)
+    println(randomData)
+
+    // we can operate on read-only lists
+    println(languages.size)
+    println(languages[2])
+    println(languages.get(2))
+    println(languages.indexOf("Java"))
+
+    // we can modify mutable lists
+    cities.add("Ottawa")
+    cities.removeAt(0)
+    cities.shuffle()
+    cities[1] = "Moncton"
+    println(cities)
+}
+```
+
+### Maps
+`src/main/kotlin/collections/Maps.kt`
+
+`Map`s store key-value pairs (also called entries). Keys are unique, but different keys can be paired with equal values
+```kotlin
+val countries: Map<String, String> = mapOf("Canada" to "cold", "United States" to "medium", "Argentina" to "hot")
+
+
+
+// mutable maps are basic maps with write operations
+val colours: MutableMap<Int, String> = mutableMapOf(1 to "red", 2 to "green", 3 to "blue")
+
+
+
+fun main() {
+    println(countries)
+    println(countries.keys)
+    println(countries.values)
+
+    // mutable maps
+    println(colours)
+    colours.put(4, "brown")
+    colours[7] = "white"
+    println(colours)
+}
+```
+
+### Sets
+`src/main/kotlin/collections/Sets.kt`
+
+`Sets` store unique elements, and their order is generally undefined
+```kotlin
+val students: Set<Int> = setOf(0, 12, 20, 24,)
+
+
+
+// sets are immutable by default
+// we can create mutable sets as well
+val animals: MutableSet<String> = mutableSetOf("deer", "bear", "raven")
+
+
+
+fun main() {
+    println(students)
+    println(students.size)
+    println(students.contains(12))
+
+    // mutable sets
+    println(animals)
+    animals.add("beaver")
+    println(animals)
+}
+```
+<br/>
+<br/>
+
 ## Functions
 ```kotlin
 package functions
