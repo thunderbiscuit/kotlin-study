@@ -1,8 +1,9 @@
 This website is the 1-pager version of a series of packages, code samples, and short explorations of the Kotlin language I keep in [this repo](https://github.com/thunderbiscuit/kotlin-study).
+
+<br/>
 <br/>
 
-## Data
-`package data`
+# Data (`package data`)
 
 ### Variables `src/main/kotlin/data/Variables.kt`
 Variables are declared as being read-only (`val`) or mutable (`var`). The variable type is declared after a colon right after the name of the variable.
@@ -20,6 +21,7 @@ Variables by default are non-nullable. You can allow a variable to be null by de
 ```kotlin
 var kids: Boolean? = null
 ```
+<br/>
 
 ### Destructuring `/src/main/kotlin/data/Destructuring.kt`
 
@@ -57,6 +59,7 @@ fun main() {
 }
 
 ```
+<br/>
 
 ### Operator Overloading `src/main/kotlin/data/OperatorOverloading.kt`
 Operators like `+` and `-` can be defined for custom classes.
@@ -82,8 +85,9 @@ fun main() {
 }
 ```
 <br/>
+<br/>
 
-## Functions
+# Functions
 
 `package functions`
 
@@ -191,7 +195,7 @@ fun main() {
 ```
 <br/>
 
-## Standard Library
+# Imports and Standard Library
 `package standardlibrary`
 
 #### Imports `/src/main/kotlin/Imports.kt`
