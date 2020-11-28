@@ -620,6 +620,26 @@ marty.javaClass.kotlin.simpleName
 sam::class.simpleName
 ```
 
+### Init Blocks
+`src/main/kotlin/classes/InitBlocks.kt`
+
+If we need to run some code as part of the constructor, we can put that code inside one or more init blocks. Those blocks get executed in order they appear in the class declaration, only once when the object is initialized.
+```kotlin
+class User constructor(val age: Int) {
+    val isAdult: Boolean
+
+    init {
+        isAdult = age > 18
+        if (isAdult = age > 18) println("User is an adult") else println("User is a child")
+    }
+}
+
+fun main() {
+    val jess = User(age = 9) // instantiating the object will print "User is a child" in this case
+    println(jess.isAdult) // false
+}
+```
+
 ### Enums
 `src/main/kotlin/classes/Enums.kt`
 We use enums to specify that a variable can only take values from a predetermined set of possible values. A response from a server might require that it either be a SUCCESS or FAILURE, for example, or that the OS option for the user be set to ANDROID, MAC, or LINUX.
@@ -651,26 +671,6 @@ fun main() {
 }
 ```
 
-### Init Blocks
-`src/main/kotlin/classes/InitBlocks.kt`
-
-If we need to run some code as part of the constructor, we can put that code inside one or more init blocks. Those blocks get executed in order they appear in the class declaration, only once when the object is initialized.
-```kotlin
-class User constructor(val age: Int) {
-    val isAdult: Boolean
-
-    init {
-        isAdult = age > 18
-        if (isAdult = age > 18) println("User is an adult") else println("User is a child")
-    }
-}
-
-fun main() {
-    val jess = User(age = 9) // instantiating the object will print "User is a child" in this case
-    println(jess.isAdult) // false
-}
-```
-
 ### Singletons
 `src/main/kotlin/classes/Singletons.kt`
 
@@ -685,6 +685,64 @@ object DatabaseManager {
 fun main() {
     // the object's initialization is thread-safe and is done at first access (like below)
     DatabaseManager.connectToDatabase(42)
+}
+```
+
+### Abstract Classes
+`src/main/kotlin/classes/Abstract.kt`
+
+An `abstract` class cannot be instantiated, but subclasses can inherit from them. Class members can also be `abstract`, but they are not required to.
+```kotlin
+open abstract class SmallBuilding constructor(age: Int, material: String) {
+
+    init {
+        println("This small building is $age years old")
+    }
+
+    open abstract var colour: String
+
+    open abstract fun changeColour(colour: String)
+    
+    fun printAddress(address: String): Unit {
+        println("The address of the building is $address")
+    }
+}
+
+class House(colourOfHouse: String, age: Int = 0, material: String = "brick"): SmallBuilding(age, material) {
+
+    override var colour: String = colourOfHouse
+
+    override fun changeColour(newColour: String) {
+        println("The new colour of the house is $newColour")
+        this.colour = newColour
+    }
+
+    // the following method will not compile, as it overrides the printAddress in the abstract class
+    fun printAddress(address: String): Unit { // Error: 'printAddress' hides member of supertype 'SmallBuilding' and needs 'override' modifier
+       println("Address is $address")
+    }
+
+    // attempting to add the override keyword will not work, as the printAddress function in the abstract method
+    // does not have the open modifier, and is therefore final by default
+    override fun printAddress(address: String): Unit { // 'printAddress' in 'SmallBuilding' is final and cannot be overridden
+        println("Address is $address")
+    }
+
+    // note that we can define a method with the same name but a different signature, and the compiler will accept it
+    fun printAddress(): Unit {
+        println("We do not have an address for this house")
+    }
+}
+```
+
+```kotlin
+fun main() {
+    val house: House = House(colourOfHouse = "blue", age = 20, material = "stone")
+
+    // calling printAddress from the SmallBuilding class
+    house.printAddress("1, North Pole")
+    // calling printAddress from the House class
+    house.printAddress()
 }
 ```
 <br/>
@@ -740,8 +798,9 @@ class CoffeeShop constructor(val location: String, val objective: String): Build
         return objective
     }
 }
+```
 
-
+```kotlin
 fun main() {
 
     val uOfBritishColumbia: School = School("Vancouver", "teach")
@@ -872,14 +931,15 @@ The following section explores all 4 visibility modifiers:
 + TOP-LEVEL DECLARATIONS
     1. `public`: visible everywhere
     2. `internal`: visible everywhere in the same module
-    3. `private`: visible only inside the file
+    3. `private`: visible only inside the file  
 
 
 + CLASSES AND INTERFACES
     1. `public`: any client who sees the declaring class sees its public members
     2. `internal`: any client inside this module who sees the declaring class sees its internal members
     3. `private`: visible inside the class only
-    4. `protected`: visible inside the class and all its subclasses
+    4. `protected`: visible inside the class and all its subclasses  
+
 
 It consists of 3 files distributed in 2 packages: 
 
@@ -1036,7 +1096,7 @@ fun main() {
 The `internal` visibility modifier will simply acts as if the declaration was `public` within the module, and `private` outside of it. 
 
 ### Protected Visibility
-The `protected` visibility only applies to class members, and will make its declaration appear `private` to all _except_ for its subclasses.
+The `protected` visibility only applies to class members, and will make its declaration appear `private` to all _except_ for its subclasses, where it will be visible.
 
 <script>
 const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
