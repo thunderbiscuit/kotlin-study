@@ -7,7 +7,7 @@ class User constructor(val age: Int) {
 
     init {
         isAdult = age > 18
-        println("User is an adult")
+        if (isAdult == true) println("User is an adult") else println("User is a child")
     }
 }
 

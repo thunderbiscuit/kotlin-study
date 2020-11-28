@@ -1,7 +1,7 @@
 # Kotlin Study 😎
 
 <p style="text-align: right; height: 0px">
-  <button class="btn js-toggle-dark-mode" style="position: relative; top: -3rem">Enable dark theme</button>
+  <button class="btn js-toggle-dark-mode" style="position: relative; top: -3rem">Come to the dark side</button>
 </p>
 
 This website is the 1-pager version of a series of packages, code samples, and short explorations of the Kotlin language I keep in [this repo](https://github.com/thunderbiscuit/kotlin-study).
@@ -36,7 +36,6 @@ Variables by default are non-nullable. You can allow a variable to be null by de
 ```kotlin
 var kids: Boolean? = null
 ```
-<br/>
 
 ### Destructuring
 `/src/main/kotlin/data/Destructuring.kt`
@@ -75,7 +74,6 @@ fun main() {
 }
 
 ```
-<br/>
 
 ### Operator Overloading
 `src/main/kotlin/data/OperatorOverloading.kt`
@@ -264,10 +262,7 @@ fun plus2(number: Int): Int {
 }
 ```
 
-// we can build functions using named arguments
-// which allows us to provide the arguments to the function call in any order
-// we can use a mix of named arguments and positioned arguments as long all arguments subsequent to the first
-// named argument also be named
+We can build functions using named arguments which allows us to provide the arguments to the function call in any order. We can use a mix of named arguments and positioned arguments as long all arguments subsequent to the first named argument also be named.
 ```kotlin
 fun addNumbers(num1: Int, num2: Int): Int {
     val total: Int = num1 + num2
@@ -342,6 +337,7 @@ fun main() {
 }
 ```
 <br/>
+<br/>
 
 ## Imports and Standard Library
 ```kotlin
@@ -387,6 +383,21 @@ fun main() {
     // Ranges
     5.untilButNotIncluding(to = 10)
 }
+```
+
+### Standard Library
+`src/main/kotlin/standardlibrary/Standard.kt`
+We import from the Standard Library using statements like the following.
+```kotlin
+import kotlin.ranges.until
+
+// Random
+Random.nextInt(from = 0, until = 5)
+Random.nextDouble()
+Random.nextBoolean()
+
+// Ranges
+0.until(to = 10)
 ```
 <br/>
 <br/>
@@ -436,7 +447,6 @@ fun main() {
     println(maxValue)
 }
 ```
-<br/>
 
 ### For Loops
 `/src/main/kotlin/controlflow/ForLoops.kt`
@@ -450,7 +460,6 @@ fun main() {
     }
 }
 ```
-<br/>
 
 ### When
 `src/main/kotlin/controlflow/When.kt`
@@ -474,6 +483,8 @@ when (number) {
     else -> println("the number is something else")
 }
 ```
+<br/>
+<br/>
 
 ## Classes
 ```kotlin
@@ -608,7 +619,6 @@ We can retrieve the name of the class of an object using the following methods
 marty.javaClass.kotlin.simpleName
 sam::class.simpleName
 ```
-<br/>
 
 ### Enums
 `src/main/kotlin/classes/Enums.kt`
@@ -640,7 +650,6 @@ fun main() {
     println("You should purchase: $purchase")
 }
 ```
-<br/>
 
 ### Init Blocks
 `src/main/kotlin/classes/InitBlocks.kt`
@@ -661,7 +670,6 @@ fun main() {
     println(jess.isAdult) // false
 }
 ```
-<br/>
 
 ### Singletons
 `src/main/kotlin/classes/Singletons.kt`
@@ -747,7 +755,109 @@ fun main() {
     println("uOfBritishColumbia implements University interface: ${uOfBritishColumbia is University}")
 }
 ```
+<br/>
+<br/>
 
+## Lambdas
+```kotlin
+package lambdas
+```
+
+### Lambdas
+`src/main/kotlin/lambdas/Lambdas.kt`
+
+```kotlin
+
+// function types
+// all function types have a parenthesized parameter types list and a return type
+// () -> Unit
+
+// (Int, String) -> String
+// denotes a type that represent functions that take an Int and a String and returns a String
+
+// function types can optionally have an additional receiver type, which is specified before a dot in the notation
+// List<Int>.(Int) -> Unit
+
+// the function type notation can optionally include names for the function parameters
+// (x: Int, y: Int) -> Student
+
+// because functions are first-class citizens, variables can hold functions as values
+// the following are called lambda expressions
+val sum: (Int, Int) -> Int = { x: Int, y: Int -> x + y }
+val printSum: (Int, Int) -> Unit = { x: Int, y: Int -> println(x + y) }
+
+
+
+// we can build our own higher-order functions
+fun performOperationOn(x: Int, y: Int, operation: (Int, Int) -> Int): Int {
+    val result: Int = operation(x, y)
+    println("Operation performed with returned value $result")
+    return result
+}
+
+
+fun main() {
+
+    var list: List<Int> = (1..20).toList()
+    println(list)
+
+
+
+    // lambdas pass functions as parameters to other functions
+    // higher order functions are functions that take other functions as parameters, or return functions themselves
+    // take the filter method applied to lists; it requires we pass it a function to know what filter to apply
+    val smallList: List<Int> = list.filter({ it < 17 })
+    println(smallList)
+
+
+
+    // if the lambda passed as a parameter to a function is the last parameter passed (as above)
+    // it can be taken out of the parentheses
+    val verySmallList: List<Int> = list.filter() { it < 4 }
+    println("Very small list: $verySmallList")
+
+
+
+    // if there are no arguments inside the parentheses (as above), we can remove the parens
+    val evenList: List<Int> = list.filter { (it % 2 == 0) }
+    println(evenList)
+
+
+
+    // calling the variables that hold functions
+    sum(1, 1)
+    printSum(1, 6)
+
+
+
+    // custom-built higher-order function
+    performOperationOn(1, 19, { x: Int , y: Int -> x + y })
+    performOperationOn(1, 19, { x, y -> x + y })
+    performOperationOn(4, 8) { x, y, -> x * y }
+
+    // using an anonymous function instead of a lambda
+    val anonymousFunction = fun(num1: Int, num2: Int): Int = num1 + num2
+    performOperationOn(1, 4, anonymousFunction)
+
+    performOperationOn(7, 8, fun(num1: Int, num2: Int) = num1 + num2)
+}
+```
+
+### Anonymous Functions
+`src/main/kotlin/lambdas/AnonymousFunctions.kt`
+
+
+Anonymous functions do not have a name.
+```kotlin
+fun(name: String): Unit {
+    println("Hello, $name!")
+}
+
+fun(num1: Int, num2: Int) = num1 + num2
+
+val x = fun(num1: Int, num2: Int): Int = num1 + num2
+println(x(1, 1))
+```
 
 <script>
 const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
@@ -755,7 +865,7 @@ const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
 jtd.addEvent(toggleDarkMode, 'click', function(){
   if (jtd.getTheme() === 'dark') {
     jtd.setTheme('light');
-    toggleDarkMode.textContent = 'Enable dark theme';
+    toggleDarkMode.textContent = 'Come to the dark side';
   } else {
     jtd.setTheme('dark');
     toggleDarkMode.textContent = 'Return to the light side';
