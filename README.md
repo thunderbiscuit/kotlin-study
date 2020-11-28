@@ -874,36 +874,32 @@ The following section explores all 4 visibility modifiers:
     2. `internal`: visible everywhere in the same module
     3. `private`: visible only inside the file
 
+
 + CLASSES AND INTERFACES
     1. `public`: any client who sees the declaring class sees its public members
     2. `internal`: any client inside this module who sees the declaring class sees its internal members
     3. `private`: visible inside the class only
     4. `protected`: visible inside the class and all its subclasses
 
-It consists of 3 files distributed in 3 packages: `VisibilityModifiers.kt` and `OtherClass.kt` are in `visibilitymodifiers.package1`, and `Imports.kt` is in `visibilitymodifiers.package2.kt`.
+It consists of 3 files distributed in 2 packages: 
 
-### `VisibilityModifiers.kt`
+1. `visibilitymodifiers.package1`
+    + `VisibilityModifiers.kt`
+    + `OtherClass.kt`
+2. `visibilitymodifiers.package2.kt`
+    + `Imports.kt`
+
+### Public Visibility
+Declarations made at the top levels of files will be accessible everywhere. The declarations we are interested in reside in `VisibilityModifiers.kt` file. Note that files inside the same package do not need to import those declarations to use them, whereas the files in other packages do.
+
+Public visibility for class members works in very similar ways; any client who can see the declaring class will be able to see its `public` members. This means that if a class is set to `private`, for example, and an external client cannot see it, it will of course not be able to see any of the class' members, even if their visibility was set to `public`.
+
+Note that the default visibility for top level declarations _and_ for class members is `public`.
 ```kotlin
+// visibilitymodifiers.package1.VisibilityModifiers.kt
 package visibilitymodifiers.package1
 
-// TOP-LEVEL DECLARATIONS
-// public: visible everywhere
-// internal: visible everywhere in the same module
-// private: visible only inside the file
-
-// CLASSES AND INTERFACES
-// public: any client who sees the declaring class sees its public members
-// internal: any client inside this module who sees the declaring class sees its internal members
-// private: visible inside the class only
-// protected: visible inside the class and all its subclasses
-
-
-
-// variables, functions, and classes can be declared right at the top-level of a file (directly in a package)
-
-// the default visibility modifier is public
-// val pokemonName: String = "Bulbasaur" is the same as
-public val pokemonName: String = "Bulbasaur"
+public val pokemonName: String = "Bulbacool"
 
 public fun callPokemon(name: String): Unit {
     println("$name! Come!")
@@ -915,134 +911,39 @@ public class Pokemon constructor(val name: String, var xp: Int) {
     }
 }
 
-
-
-// private visibility modifier makes the top-level declarations available only in the file they are created
-// private declarations inside classes or main() will not be visible to top-level classes and functions
-private val privatePokemonName: String = "Ivysaur"
-
-private fun privateCallPokemon(name: String): Unit {
-    println("$name! Come!")
-}
-
-private class PrivatePokemon constructor(val name: String, var xp: Int) {
-    public fun gainXP(amountGained: Int) {
-        xp = xp + amountGained
-    }
-}
-
-
-
-// the internal visibility modifier makes the declaration available only within the same module
-internal val internalPokemonName: String = "Venusaur"
-
-internal fun internalCallPokemon(name: String): Unit {
-    println("$name! Come!")
-}
-
-internal class InternalPokemon constructor(val name: String, var xp: Int) {
-    public fun gainXP(amountGained: Int) {
-        xp = xp + amountGained
-    }
-}
-
-
-
-// a class can be public but have its members be public/internal/private/protected
-public class Trainer constructor(public val name: String, private var age: Int) {
-    private fun printName() {
-        println("The name of this trainer is $name")
-    }
-}
-
-
-
 fun main() {
-    // public
-    println(pokemonName)
-    callPokemon("Bulba")
+    // use of public top-level declarations
+    println(pokemonName) // Bulbacool
+    callPokemon("Bulbacool") // Bulacool! Come!
+    
+    // use of public class members
     val bulbasmooth: Pokemon = Pokemon("Bulbasmooth", 1)
-    println(bulbasmooth.name)
+    println(bulbasmooth.name) // Bulbasmooth
     bulbasmooth.gainXP(20)
-    println(bulbasmooth.xp)
-
-
-
-    // private
-    println(privatePokemonName)
-    privateCallPokemon("Ivysaur")
-    val ivysmooth: PrivatePokemon = PrivatePokemon("Ivysmooth", 1)
-    println(ivysmooth.name)
-    ivysmooth.gainXP(20)
-    println(ivysmooth.xp)
-
-
-
-    // internal
-    println(internalPokemonName)
-    internalCallPokemon("Venusaur")
-    val venusmooth: InternalPokemon = InternalPokemon("Venusmooth", 1)
-    println(venusmooth.name)
-    venusmooth.gainXP(20)
-    println(venusmooth.xp)
-
-
-
-    // public class with private members
-    val ash: Trainer = Trainer("Ash", 17)
-    ash.name
-    // ash.age // Cannot access 'age': it is private in 'Trainer'
-    // ash.printName() // Cannot access 'printName': it is private in 'Trainer'
+    println(bulbasmooth.xp) // 21
 }
 ```
 
-### `OtherClass.kt`
+The calls below refer to elements within the package that are public, and do not require imports
 ```kotlin
+// visibilitymodifiers.package1.OtherClass.kt
 package visibilitymodifiers.package1
 
-// if we try to import a private declaration from another file, we get an error
-// Cannot access 'privateCallPokemon': it is private in file
-// import visibilitymodifiers.package1.privateCallPokemon
-
-fun main() {
-    // the calls below refer to elements within the package that are public
-    // they do not require imports
-    println(pokemonName)
-    callPokemon("Bulba")
+fun main()
+    println(pokemonName) // Bulbacool
+    callPokemon("Bulbacool") // Bulbacool! Come!
     val bulbasmooth: Pokemon = Pokemon("Bulbasaur", 1)
-    println(bulbasmooth.name)
+    println(bulbasmooth.name) // Bulbasmooth
     bulbasmooth.gainXP(20)
-    println(bulbasmooth.xp)
-
-
-
-    // private variables, functions, and classes cannot be imported and therefore accessed
-    // println(privatePokemonName) // Cannot access 'privatePokemonName': it is private in file
-    // privateCallPokemon("Ivysaur") // Cannot access 'privateCallPokemon': it is private in file
-    // val ivysmooth: PrivatePokemon = PrivatePokemon("Ivysmooth", 1) // Cannot access 'PrivatePokemon': it is private in file
-    // println(ivysmooth.name)
-    // note that the gainXP function in PrivatePokemon is public, but because the class is private we cannot access it
-    // ivysmooth.gainXP(20)
-    // println(ivysmooth.xp)
-
-
-
-    // the following declarations have their visibility set as internal
-    // they are from the same package and therefore do not need to be imported
-    println(internalPokemonName)
-    internalCallPokemon("Venusaur")
-    val venusmooth: InternalPokemon = InternalPokemon("Venusmooth", 1)
-    println(venusmooth.name)
-    venusmooth.gainXP(20)
-    println(venusmooth.xp)
+    println(bulbasmooth.xp) // 21
 }
 ```
 
-### `Imports.kt`
 ```kotlin
+// visibilitymodifiers.package2.Imports.kt
 package visibilitymodifiers.package2
 
-// import visibilitymodifiers.package1.pokemonName
+// import visibilitymodifiers.package1.pokemonName // notice we purposely do not import pokemonName
 import visibilitymodifiers.package1.callPokemon
 import visibilitymodifiers.package1.Pokemon
 import visibilitymodifiers.package1.InternalPokemon
@@ -1052,36 +953,90 @@ import visibilitymodifiers.package1.Trainer
 
 fun main() {
     // the following call doesn't work because even though pokemonName is public, it needs to be imported
-    // println(pokemonName) // Error: Unresolved reference: pokemonName
+    println(pokemonName) // Error: Unresolved reference: pokemonName
 
     // the following declarations have their visibility set as public
-    // coming from a different package, they need to be imported
+    // once imported, they work just fine
     callPokemon("Bulba")
     val bulbasmooth: Pokemon = Pokemon("Bulbasaur", 1)
     println(bulbasmooth.name)
     bulbasmooth.gainXP(20)
     println(bulbasmooth.xp)
+}
+```
 
+### Private Visibility
+The `private` visibility modifier makes top-level declarations only available within the file in which they are declared, and class members only visible inside the class they belong to.
 
+A class can be public but have some of its members be `public`/`private`/`internal`/`protected`. See the `Trainer` class below.
+```kotlin
+// visibilitymodifiers.package1.VisibilityModifiers.kt
+package visibilitymodifiers.package1
 
-    // the following declarations have their visibility set as internal
-    // they work because they are imported
-    println(internalPokemonName)
-    internalCallPokemon("Venusaur")
-    val venusmooth: InternalPokemon = InternalPokemon("Venusmooth", 1)
-    println(venusmooth.name)
-    venusmooth.gainXP(20)
-    println(venusmooth.xp)
+private val privatePokemonName: String = "Ivysaur"
 
+private fun privateCallPokemon(name: String): Unit {
+    println("$name! Come!")
+}
 
+// notice that even though PrivatePokemon is private, its gainXP method is public
+private class PrivatePokemon constructor(val name: String, var xp: Int) {
+    public fun gainXP(amountGained: Int) {
+        xp = xp + amountGained
+    }
+}
+
+public class Trainer constructor(public val name: String, private var age: Int) {
+    private fun printName() {
+        println("The name of this trainer is $name")
+    }
+}
+
+fun main() {
+    println(privatePokemonName)
+    privateCallPokemon("Ivysaur")
+
+    val ivysmooth: PrivatePokemon = PrivatePokemon("Ivysmooth", 1)
+    println(ivysmooth.name)
+
+    // we can use gainXP() because it is set as public
+    ivysmooth.gainXP(20)
+    println(ivysmooth.xp)
 
     // public class with private members
     val ash: Trainer = Trainer("Ash", 17)
-    ash.name
-    // ash.age // Cannot access 'age': it is private in 'Trainer'
-    // ash.printName() // Cannot access 'printName': it is private in 'Trainer'
+    ash.name // Ash
+    ash.age // Cannot access 'age': it is private in 'Trainer'
+    ash.printName() // Cannot access 'printName': it is private in 'Trainer'
 }
 ```
+
+Trying to import a private top-level declaration from another file will throw an error. Private top-level declarations cannot be imported and therefore accessed.
+
+Both `OtherClass.kt` and `Imports.kt` throw the same types of error, as the declarations are never imported in the first place.
+```kotlin
+// visibilitymodifiers.package1.OtherClass.kt
+package visibilitymodifiers.package1
+
+import visibilitymodifiers.package1.privateCallPokemon // Cannot access 'privateCallPokemon': it is private in file
+
+fun main() {
+    println(privatePokemonName) // Cannot access 'privatePokemonName': it is private in file
+    privateCallPokemon("Ivysaur") // Cannot access 'privateCallPokemon': it is private in file
+    val ivysmooth: PrivatePokemon = PrivatePokemon("Ivysmooth", 1) // Cannot access 'PrivatePokemon': it is private in file
+    
+    // note that the gainXP function in PrivatePokemon is public, but because the class is private we still cannot access it
+    ivysmooth.gainXP(20) // ivysmooth was never instantiated
+    println(ivysmooth.xp) // ivysmooth was never instantiated
+}
+
+```
+
+### Internal Visibility
+The `internal` visibility modifier will simply acts as if the declaration was `public` within the module, and `private` outside of it. 
+
+### Protected Visibility
+The `protected` visibility only applies to class members, and will make its declaration appear `private` to all _except_ for its subclasses.
 
 <script>
 const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
