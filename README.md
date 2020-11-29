@@ -9,7 +9,7 @@ This website is the 1-pager version of a series of packages, code samples, and s
 
 <br/>
 <center>
-    <img src="./Kotlin-logo.svg.png" width="200">
+    <img src="./images/kotlin-logo.png" width="200">
 </center>
 <br/>
 
