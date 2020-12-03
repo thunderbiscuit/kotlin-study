@@ -148,7 +148,7 @@ Lists can contain elements of different types
 val randomData: List<Any> = listOf("Learn Android", 5, "The Honeybadger", 17.2)
 ```
 
-Lists are immutable by default, but we can create mutable lists
+Lists are immutable by default, but we can also create mutable lists
 ```kotlin
 val cities: MutableList<String> = mutableListOf("Vancouver", "Calgary", "Toronto", "Montreal")
 ```
@@ -180,14 +180,14 @@ fun main() {
 `Map`s store key-value pairs (also called entries). Keys are unique, but different keys can be paired with equal values
 ```kotlin
 val countries: Map<String, String> = mapOf("Canada" to "cold", "United States" to "medium", "Argentina" to "hot")
+```
 
-
-
-// mutable maps are basic maps with write operations
+Mutable maps are basic maps with write operations
+```kotlin
 val colours: MutableMap<Int, String> = mutableMapOf(1 to "red", 2 to "green", 3 to "blue")
+```
 
-
-
+```kotlin
 fun main() {
     println(countries)
     println(countries.keys)
@@ -207,15 +207,15 @@ fun main() {
 `Sets` store unique elements, and their order is generally undefined
 ```kotlin
 val students: Set<Int> = setOf(0, 12, 20, 24,)
+```
 
 
-
-// sets are immutable by default
-// we can create mutable sets as well
+`Set`s are immutable by default, but we can create mutable sets as well.
+```kotlin
 val animals: MutableSet<String> = mutableSetOf("deer", "bear", "raven")
+```
 
-
-
+```kotlin
 fun main() {
     println(students)
     println(students.size)
@@ -414,7 +414,6 @@ package controlflow
 val ID1: Boolean = true
 val ID2: Boolean = false
 
-// if else control flow
 fun checkID(validID: Boolean): Unit {
     if (validID == true) {
         println("The user has a valid ID")
@@ -422,24 +421,24 @@ fun checkID(validID: Boolean): Unit {
         println("The user does not have a valid ID")
     }
 }
+```
 
-
-// if each block of the if-else is simply a return, the whole thing can be written like so
+If each block of the if-else is simply a return, the whole thing can be written like so
+```kotlin
 fun checkOtherID(otherValidID: Boolean): String = if (otherValidID == true) "yes" else "no"
+```
 
 
-
-// we can simplify boolean condition checks like this
+We can simplify boolean condition checks like this
+```kotlin
 fun checkOtherOtherID(otherOtherValidID: Boolean): String = if (otherOtherValidID) "yes" else "no"
+```
 
-
-
-// if else are expressions, and can be used to set variable values
+If/Else are expressions, and can be used to set variable values
+```kotlin
 val a: Int = 1
 val b: Int = 2
 val maxValue = if (a > b) a else b
-
-
 
 fun main() {
     checkID(ID1)
@@ -1104,6 +1103,9 @@ The `protected` visibility only applies to class members, and will make its decl
 ```kotlin
 package exceptions
 ```
+
+### Exceptions
+`src/main/kotlin/exceptions/Exceptions.kt`
 
 Exception classes are all descendants of the `Throwable` class. We throw exceptions using the `throw` syntax like so:
 ```kotlin
