@@ -104,4 +104,26 @@ fun main() {
 
     nameInterestingThings("a", "b", "c",)
     nameInterestingThings(*interestingThings)
+
+
+
+    //we can use methods known as toString methods.
+    //this toString demonstrates it with numbers
+    val number = 15
+    println(number.toString())
+
+    //this toString works with strings
+    val string = "Hello Kotlin"
+    println(string.toString())
+
+    //toStrings can also work with objects
+    val student = Student("ThunderBiscuit", 123456)
+    println(student.toString())
+
+
 }
+
+
+
+//data class for toString method demonstration
+data class Student(val name:String, var studentId:Int)
