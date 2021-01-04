@@ -109,14 +109,18 @@ fun main() {
 
     //we can use methods known as toString methods.
     //this toString demonstrates it with numbers
+    //The toString method is used to return a string representation of an object.
+    
+    //using a toString(), we can print out a number (int)
     val number = 15
     println(number.toString())
 
-    //this toString works with strings
+    //this toString also works with strings
     val string = "Hello Kotlin"
     println(string.toString())
 
     //toStrings can also work with objects
+    //see below for class
     val student = Student("ThunderBiscuit", 123456)
     println(student.toString())
 
