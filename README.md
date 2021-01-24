@@ -1,3 +1,11 @@
+---
+layout: default
+title: kotlin-study
+nav_order: 1
+description: "Kotlin Study"
+permalink: /
+---
+
 # Kotlin Study 😎
 
 <p style="text-align: right; height: 0px">
