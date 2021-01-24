@@ -5,7 +5,7 @@ search_enabled: true
 search:
   # Split pages into sections that can be searched individually
   # Supports 1 - 6, default: 2
-  heading_level: 2
+  heading_level: 3
   # Maximum amount of previews per search result
   # Default: 3
   previews: 2
@@ -24,6 +24,6 @@ search:
   rel_url: true
   # Enable or disable the search button that appears in the bottom right corner of every page
   # Supports true or false (default)
-  button: false
+  button: true
 
 heading_anchors: true
